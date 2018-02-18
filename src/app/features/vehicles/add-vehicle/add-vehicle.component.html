@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Add New Vehicle (template form)</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #addForm="ngForm">
+    <div class="form-group">
+      <label for="make">Make</label>
+      <input type="text" class="form-control" id="make" required [(ngModel)]="vehicle.make" name="make" #make="ngModel">
+      <div [hidden]="make.valid || make.pristine" class="alert alert-danger">
+          Make is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="model">Model</label>
+      <input type="text" class="form-control" id="model" required [(ngModel)]="vehicle.model" name="model" #model="ngModel">
+      <div [hidden]="model.valid || model.pristine" class="alert alert-danger">
+          Model is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="color">Color</label>
+      <input type="text" class="form-control" id="color" required [(ngModel)]="vehicle.color" name="color" #color="ngModel">
+      <div [hidden]="color.valid || color.pristine" class="alert alert-danger">
+          Color is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cost">Cost</label>
+      <input type="number" class="form-control" id="cost" required [(ngModel)]="vehicle.cost" name="cost" #cost="ngModel">
+      <div [hidden]="cost.valid || cost.pristine" class="alert alert-danger">
+          Cost is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" [(ngModel)]="vehicle.description" name="description">
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button [disabled]="!addForm.valid" type="button" class="btn btn-primary" (click)="save()">Save</button>
+</div>

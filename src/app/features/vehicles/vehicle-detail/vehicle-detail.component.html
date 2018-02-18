@@ -1,0 +1,36 @@
+
+<div class="row p-5">
+  <div class="col card">
+      <form [formGroup]="vehicleForm" novalidate>
+          <div class="form-group">
+            <label class="center-block">Make:
+              <input class="form-control" formControlName="make">
+            </label>
+            <div [hidden]="vehicleForm.controls.make.valid || vehicleForm.controls.make.pristine" class="alert alert-danger">
+              Make is required
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label class="center-block">Model:
+                <input class="form-control" formControlName="model">
+              </label>
+              <div [hidden]="vehicleForm.controls.model.valid || vehicleForm.controls.model.pristine" class="alert alert-danger">
+                Model is required
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label class="center-block">Trim:
+                  <input class="form-control" formControlName="trim">
+                </label>
+                <div [hidden]="vehicleForm.controls.trim.valid || vehicleForm.controls.trim.pristine" class="alert alert-danger">
+                    Trim is required
+                </div>
+              </div>
+
+        </form>
+
+        <button [disabled]="!vehicleForm.valid || vehicleForm.pristine" type="submit" class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+</div>

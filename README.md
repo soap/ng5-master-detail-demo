@@ -1,4 +1,18 @@
-# DemoApp
+# Angular 5 CLI Master Detail Demo with  - by Brian Madison
+
+Example withfollowing libraries and features:
+* Bootstrap 4 Release
+* Angular CLI / Angular 5.x
+* Master and Detail page
+* Root and Child Routes
+* Multiple Modules
+* Router Resolvers
+* SCSS
+* Route Guards
+* Large Dataset with Pager
+* List page with modal to add new item with template form that passes data back to calling component
+* Detail Page with reactive form sample
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
 
