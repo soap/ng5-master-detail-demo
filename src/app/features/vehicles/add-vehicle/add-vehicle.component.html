@@ -8,7 +8,9 @@
   <form #addForm="ngForm">
     <div class="form-group">
       <label for="make">Make</label>
-      <input type="text" class="form-control" id="make" required [(ngModel)]="vehicle.make" name="make" #make="ngModel">
+      <select class="form-control" #make="ngModel" [(ngModel)]="vehicle.make" name="make">
+        <option *ngFor="let make of makes" [value]="make">{{make}}</option>
+      </select>
       <div [hidden]="make.valid || make.pristine" class="alert alert-danger">
           Make is required
       </div>

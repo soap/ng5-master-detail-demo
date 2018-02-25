@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vehicle } from '../vehicle';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { VehicleService } from '../vehicle.service';
 
 @Component({
   selector: 'app-vehicle-detail',
@@ -11,11 +12,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class VehicleDetailComponent implements OnInit {
   vehicle: Vehicle;
   vehicleForm: FormGroup;
-  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
+  makes: string[] = [];
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private vehcileService: VehicleService) { }
 
   ngOnInit() {
     this.vehicle = this.route.snapshot.data['vehicle'];
-
+    this.vehcileService.getMakes().subscribe( makes => this.makes = makes);
     this.createForm();
   }
 
@@ -44,10 +49,15 @@ export class VehicleDetailComponent implements OnInit {
   }
 
   save() {
-    alert(JSON.stringify(this.vehicle));
-    this.vehicleForm.markAsPristine();
-    this.vehicleForm.updateValueAndValidity();
-    return false;
+    this.vehcileService.updateVehicle(this.vehicleForm.value).subscribe( result => {
+      this.vehicleForm.markAsPristine();
+      this.vehicleForm.updateValueAndValidity();
+      this.router.navigate(['/vehicles']);
+    });
+  }
+
+  cancel() {
+    this.router.navigate(['/vehicles']);
   }
 
 }

@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { PaginationModule, ModalModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { TfynPipe } from './tfyn.pipe';
 
 @NgModule({
   imports: [
@@ -22,7 +23,7 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
     ModalModule
   ],
   entryComponents: [ AddVehicleComponent ],
-  declarations: [VehicleListComponent, VehicleDetailComponent, AddVehicleComponent],
+  declarations: [VehicleListComponent, VehicleDetailComponent, AddVehicleComponent, TfynPipe],
   exports: [VehicleListComponent, AddVehicleComponent],
   providers: [VehicleService, VehicleGuard, VehicleResolverService]
 })

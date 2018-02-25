@@ -12,16 +12,19 @@ import { Subject } from 'rxjs/Subject';
 export class AddVehicleComponent implements OnInit {
   vehicle: Vehicle = new Vehicle();
   public onClose: Subject<Vehicle>;
+  makes: string[] = [];
   constructor(public bsModalRef: BsModalRef, private vSvc: VehicleService) { }
 
   ngOnInit() {
+    this.vSvc.getMakes().subscribe( makes => this.makes = makes);
     this.onClose = new Subject();
   }
 
   save() {
-    this.vSvc.addVehicle(this.vehicle).subscribe()
-    this.onClose.next(this.vehicle);
-    this.bsModalRef.hide();
+    this.vSvc.addVehicle(this.vehicle).subscribe( (result) => {
+      this.onClose.next(this.vehicle);
+      this.bsModalRef.hide();
+    });
   }
 
 }

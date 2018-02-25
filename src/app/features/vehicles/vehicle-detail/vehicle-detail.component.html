@@ -1,36 +1,97 @@
-
-<div class="row p-5">
-  <div class="col card">
-      <form [formGroup]="vehicleForm" novalidate>
-          <div class="form-group">
-            <label class="center-block">Make:
-              <input class="form-control" formControlName="make">
-            </label>
-            <div [hidden]="vehicleForm.controls.make.valid || vehicleForm.controls.make.pristine" class="alert alert-danger">
-              Make is required
-            </div>
-          </div>
-
-          <div class="form-group">
-              <label class="center-block">Model:
-                <input class="form-control" formControlName="model">
-              </label>
-              <div [hidden]="vehicleForm.controls.model.valid || vehicleForm.controls.model.pristine" class="alert alert-danger">
-                Model is required
-              </div>
-            </div>
-
-            <div class="form-group">
-                <label class="center-block">Trim:
-                  <input class="form-control" formControlName="trim">
-                </label>
-                <div [hidden]="vehicleForm.controls.trim.valid || vehicleForm.controls.trim.pristine" class="alert alert-danger">
-                    Trim is required
-                </div>
-              </div>
-
-        </form>
-
-        <button [disabled]="!vehicleForm.valid || vehicleForm.pristine" type="submit" class="btn btn-primary" (click)="save()">Save</button>
+<form [formGroup]="vehicleForm" novalidate>
+  <div class="row">
+    <div class="col">
+      <h4 class="text-center my-3">Edit Vehicle Information</h4>
+    </div>
   </div>
-</div>
+  <div class="row">
+    <div class="col card-deck">
+      <div class="card px-3">
+
+        <div class="form-group">
+          <label class="center-block">Vin:</label>
+          <input class="form-control" formControlName="vin">
+          <div [hidden]="vehicleForm.controls.vin.valid || vehicleForm.controls.vin.pristine" class="alert alert-danger">
+            Vin is required
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="make">Make:</label>
+          <select class="form-control" formControlName="make">
+            <option *ngFor="let make of makes" [value]="make">{{make}}</option>
+          </select>
+          <div [hidden]="vehicleForm.controls.make.valid || vehicleForm.controls.make.pristine" class="alert alert-danger">
+            Make is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Model:</label>
+          <input class="form-control" formControlName="model">
+          <div [hidden]="vehicleForm.controls.model.valid || vehicleForm.controls.model.pristine" class="alert alert-danger">
+            Model is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="center-block">Year:</label>
+          <input type="number" class="form-control" formControlName="year">
+          <div [hidden]="vehicleForm.controls.year.valid || vehicleForm.controls.year.pristine" class="alert alert-danger">
+            Year is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Trim:</label>
+          <input class="form-control" formControlName="trim">
+          <div [hidden]="vehicleForm.controls.trim.valid || vehicleForm.controls.trim.pristine" class="alert alert-danger">
+            Trim is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="center-block">Color:</label>
+          <input class="form-control" formControlName="color">
+          <div [hidden]="vehicleForm.controls.color.valid || vehicleForm.controls.color.pristine" class="alert alert-danger">
+            Color is required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card px-3">
+
+        <div class="form-group">
+          <label class="center-block">Cost:</label>
+          <input type="number" class="form-control" formControlName="cost">
+          <div [hidden]="vehicleForm.controls.cost.valid || vehicleForm.controls.cost.pristine" class="alert alert-danger">
+            Cost is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="center-block">Sale Date:</label>
+          <input type="date" class="form-control" formControlName="lastSaleDate">
+        </div>
+
+        <div class="form-group">
+          <label class="center-block">Description:</label>
+          <textarea class="form-control" formControlName="description"></textarea>
+          <div [hidden]="vehicleForm.controls.description.valid || vehicleForm.controls.description.pristine" class="alert alert-danger">
+            Description is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="center-block">Company:</label>
+          <input class="form-control" formControlName="company">
+        </div>
+        <button type="button" class="mt-auto mb-3 btn btn-primary" (click)="cancel()">Cancel</button>
+        <button [disabled]="!vehicleForm.valid || vehicleForm.pristine" type="button" class="mt-auto mb-3 btn btn-primary" (click)="save()">Save</button>
+      </div>
+    </div>
+  </div>
+
+</form>
+

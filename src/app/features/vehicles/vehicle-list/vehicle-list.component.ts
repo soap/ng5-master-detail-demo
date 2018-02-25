@@ -2,7 +2,6 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Vehicle } from '../vehicle';
 import { VehicleService } from '../vehicle.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AddVehicleComponent } from '../add-vehicle/add-vehicle.component';
 
@@ -10,13 +9,14 @@ import { AddVehicleComponent } from '../add-vehicle/add-vehicle.component';
   selector: 'app-vehicle-list',
   templateUrl: './vehicle-list.component.html'
 })
-export class VehicleListComponent implements OnInit, OnDestroy {
+export class VehicleListComponent implements OnInit {
   vehicles: Vehicle[] = [];
   totalItems = 0;
   currentPage = 1;
   numPages = 0;
   pageSize = 8;
   modalRef: BsModalRef;
+  search = '';
 
   constructor(
     private vehicleSvc: VehicleService,
@@ -42,10 +42,6 @@ export class VehicleListComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    // do not need to unsubscribe to router observables
-  }
-
   fetchVehicles(qp?: Params) {
     this.vehicleSvc.getVehicles(qp).subscribe( (result) => {
       this.vehicles = result.data;
@@ -69,4 +65,10 @@ export class VehicleListComponent implements OnInit, OnDestroy {
     });
   }
 
+  searchVehicles() {
+    const queryParams: Params = Object.assign({}, this.route.snapshot.queryParams);
+    console.log(this.search);
+    queryParams['q'] = this.search;
+    this.router.navigate(['vehicles'], { queryParams: queryParams});
+  }
 }
