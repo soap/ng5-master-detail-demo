@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FeaturesModule } from './features/features.module';
 import { PaginationModule, ModalModule } from 'ngx-bootstrap';
+import { ConfigService } from './config/config.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -11,12 +13,13 @@ import { PaginationModule, ModalModule } from 'ngx-bootstrap';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
     FeaturesModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

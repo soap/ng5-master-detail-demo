@@ -26,24 +26,12 @@ export class VehicleDetailComponent implements OnInit {
 
   createForm() {
     this.vehicleForm = this.formBuilder.group( {
-      id: [this.vehicle.id, Validators.required],
-      company: this.vehicle.company,
+      id: [this.vehicle._id, Validators.required],
       make: [this.vehicle.make, Validators.required],
       model: [this.vehicle.model, Validators.required],
-      trim: this.vehicle.trim,
       color: [this.vehicle.color, Validators.required],
-      isAvailable: this.vehicle.isAvailable,
       cost: [this.vehicle.cost, Validators.required],
-      picture: this.vehicle.picture,
-      year: [this.vehicle.year],
-      contact: this.vehicle.contact,
-      seller: this.vehicle.seller,
-      email: [this.vehicle.email, Validators.required],
-      phone: this.vehicle.phone,
-      address: this.vehicle.address,
       description: this.vehicle.description,
-      lastSaleDate: this.vehicle.lastSaleDate,
-      tags: [this.vehicle.tags],
       vin: [this.vehicle.vin, Validators.required]
     });
   }
